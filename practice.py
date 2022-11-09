@@ -809,32 +809,35 @@
 
 
 # サイトから画像を取って保存する----------------------------------------
-# import requests
-# from bs4 import BeautifulSoup
-# from pathlib import Path
-# import urllib
-# import time
+import requests
+from bs4 import BeautifulSoup
+from pathlib import Path
+import urllib
+import time
 
-# load_url = "http://maima.me/"
-# html = requests.get(load_url)
-# soup = BeautifulSoup(html.content,"html.parser")
+load_url = "http://maima.me/"
+html = requests.get(load_url)
+soup = BeautifulSoup(html.content,"html.parser")
 
 # 保存先作成
-# out_folder = Path("download4")
-# out_folder.mkdir(exist_ok=True)
+out_folder = Path("download4")
+out_folder.mkdir(exist_ok=True)
 
 # タグごとに検索して保存
-# for element in soup.find_all("img"):
-#     src = element.get("src")
+for element in soup.find_all("img"):
+    src = element.get("src")
 
-#     image_url = urllib.parse.urljoin(load_url,src)
-#     imgdata = requests.get(image_url)
+    image_url = urllib.parse.urljoin(load_url,src)
+    imgdata = requests.get(image_url)
 
-#     filename = image_url.split("/")[-1]
-#     out_path = out_folder.joinpath(filename)
+    filename = image_url.split("/")[-1]
+    out_path = out_folder.joinpath(filename)
 
-#     with open(out_path,mode ="wb") as f:
-#         f.write(imgdata.content)
+    with open(out_path,mode ="wb") as f:
+        f.write(imgdata.content)
 
-#     time.sleep(1)
+    time.sleep(1)
+
+#------------------------------------------------------------------
+
 
