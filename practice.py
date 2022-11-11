@@ -789,7 +789,6 @@
 #     print("UST={ust}, JST={jst}".format(ust=dat["dt_txt"],jst=jst))
 
 
-
 #####実践プログラム作成##################
 
 # 一括取得(URLとタイトル)---------------------------------------------
@@ -808,86 +807,37 @@
 #------------------------------------------------------------------
 
 
-
-# デコレータの基本-----------------------------------------------
-# def log_func(func):
-#     # 関数内関数を定義
-#     def inner(*args, **keywds):
-#         print("---------------")
-#         print(f'Name:{func.__name__}')
-#         print(f'Args:{args}')
-#         print(f'Keywds:{keywds}')
-#         print('----------------')
-#         return func(*args, **keywds)
-#     return inner
-
-# def hoge(x, y, m='bar', n= 'piyo'):
-#     print(f'hoge:{x}-{y}/{m}-{n}')
-
-# # log_func関数の戻り値を実行
-# log_hoge= log_func(hoge)
-# log_hoge(15, 37, m ='ほげ', n= 'ぴよ')
-
-# --------------------------------------------------------------
-
-
-# 引数を受け取るデコレーター-----------------------------------------------
-def log_func(detail = True):
-    # 修飾すべき、関数を受け取る
-    def outer(func):
-        # 本来の関数にわたすべき引数を受け取る
-        def inner(*args, **keywds):
-            print("---------------------")
-            print(f'Name:{func.__name__}')
-
-            if detail:
-                print(f'Args:{args}')
-                print(f'Keywds:{keywds}')
-            print("----------------------")
-            return func(*args,**keywds)
-        return inner
-    return outer
-
-@log_func(detail=True)
-def hoge(x,y,m="bar",n="piyo"):
-    print(f'Name={x}-{y}/{m}-{n}')
-
-hoge(15,25,m='ほげ',n="ピヨ")
-# --------------------------------------------------------------
-
-
-
 # サイトから画像を取って保存する----------------------------------------
-# import requests
-# from bs4 import BeautifulSoup
-# from pathlib import Path
-# import urllib
-# import time
+import requests
+from bs4 import BeautifulSoup
+from pathlib import Path
+import urllib
+import time
 
-# load_url = "http://maima.me/"
-# html = requests.get(load_url)
-# soup = BeautifulSoup(html.content,"html.parser")
-
-
-# # 保存先作成
-# out_folder = Path("download4")
-# out_folder.mkdir(exist_ok=True)
-
-# # タグごとに検索して保存
+load_url = "http://maima.me/"
+html = requests.get(load_url)
+soup = BeautifulSoup(html.content,"html.parser")
 
 
-# for element in soup.find_all("img"):
-#     src = element.get("src")
+# 保存先作成
+out_folder = Path("download4")
+out_folder.mkdir(exist_ok=True)
 
-#     image_url = urllib.parse.urljoin(load_url,src)
-#     imgdata = requests.get(image_url)
+# タグごとに検索して保存
 
-#     filename = image_url.split("/")[-1]
-#     out_path = out_folder.joinpath(filename)
 
-#     with open(out_path,mode ="wb") as f:
-#         f.write(imgdata.content)
+for element in soup.find_all("img"):
+    src = element.get("src")
 
-#     time.sleep(1)
+    image_url = urllib.parse.urljoin(load_url,src)
+    imgdata = requests.get(image_url)
+
+    filename = image_url.split("/")[-1]
+    out_path = out_folder.joinpath(filename)
+
+    with open(out_path,mode ="wb") as f:
+        f.write(imgdata.content)
+
+    time.sleep(1)
 
 #------------------------------------------------------------------
