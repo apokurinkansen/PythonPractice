@@ -742,8 +742,6 @@
 # print(jsondata)
 
 
-
-
 # ---------------WebAPIを使用して天気を取得-------------------------
 # import requests
 # import json
@@ -789,7 +787,6 @@
 #     print("UST={ust}, JST={jst}".format(ust=dat["dt_txt"],jst=jst))
 
 
-
 #####実践プログラム作成##################
 
 # 一括取得(URLとタイトル)---------------------------------------------
@@ -806,55 +803,6 @@
 #     print(a['href'], a.text)
 
 #------------------------------------------------------------------
-
-
-
-# デコレータの基本-----------------------------------------------
-# def log_func(func):
-#     # 関数内関数を定義
-#     def inner(*args, **keywds):
-#         print("---------------")
-#         print(f'Name:{func.__name__}')
-#         print(f'Args:{args}')
-#         print(f'Keywds:{keywds}')
-#         print('----------------')
-#         return func(*args, **keywds)
-#     return inner
-
-# def hoge(x, y, m='bar', n= 'piyo'):
-#     print(f'hoge:{x}-{y}/{m}-{n}')
-
-# # log_func関数の戻り値を実行
-# log_hoge= log_func(hoge)
-# log_hoge(15, 37, m ='ほげ', n= 'ぴよ')
-
-# --------------------------------------------------------------
-
-
-# 引数を受け取るデコレーター-----------------------------------------------
-def log_func(detail = True):
-    # 修飾すべき、関数を受け取る
-    def outer(func):
-        # 本来の関数にわたすべき引数を受け取る
-        def inner(*args, **keywds):
-            print("---------------------")
-            print(f'Name:{func.__name__}')
-
-            if detail:
-                print(f'Args:{args}')
-                print(f'Keywds:{keywds}')
-            print("----------------------")
-            return func(*args,**keywds)
-        return inner
-    return outer
-
-@log_func(detail=True)
-def hoge(x,y,m="bar",n="piyo"):
-    print(f'Name={x}-{y}/{m}-{n}')
-
-hoge(15,25,m='ほげ',n="ピヨ")
-# --------------------------------------------------------------
-
 
 
 # サイトから画像を取って保存する----------------------------------------
