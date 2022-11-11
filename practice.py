@@ -868,11 +868,14 @@ hoge(15,25,m='ほげ',n="ピヨ")
 # html = requests.get(load_url)
 # soup = BeautifulSoup(html.content,"html.parser")
 
+
 # # 保存先作成
 # out_folder = Path("download4")
 # out_folder.mkdir(exist_ok=True)
 
 # # タグごとに検索して保存
+
+
 # for element in soup.find_all("img"):
 #     src = element.get("src")
 
@@ -888,5 +891,3 @@ hoge(15,25,m='ほげ',n="ピヨ")
 #     time.sleep(1)
 
 #------------------------------------------------------------------
-
-
