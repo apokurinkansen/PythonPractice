@@ -53,29 +53,49 @@
 # ------------------------------------------
 
 # 素数を求めるジェネレータ----------------------
-import math
+# import math
 
-def get_func():
-    num = 2
-    # 2から順に素数判定し、素数の倍位にだけyield
-    while True:
-        if check_func(num):
-            yield num
-        num +=1
+# def get_func():
+#     num = 2
+#     # 2から順に素数判定し、素数の倍位にだけyield
+#     while True:
+#         if check_func(num):
+#             yield num
+#         num +=1
 
-def check_func(value):
-    result = True
-    for y in range(2,math.floor(math.sqrt(value))+1):
-        if value % y ==0:
-            result = False
-            break
-    return result
+# def check_func(value):
+#     result = True
+#     for y in range(2,math.floor(math.sqrt(value))+1):
+#         if value % y ==0:
+#             result = False
+#             break
+#     return result
 
-for i in get_func():
-    print(i)
-    if i > 100:
-        break
+# for i in get_func():
+#     print(i)
+#     if i > 100:
+#         break
 # ------------------------------------------
+
+# 素数を求めるジェネレータ----------------------
+def gen_com():
+    while True:
+        # 入力ボックスの呼び出し
+        n = yield input("名前を入力してください:")
+        # sendメソッドからの値でメッセージを生成
+        yield f"こんにちわ、{n}さん!"
+    
+gen = gen_com()
+
+for name in gen:
+    # ジェネレーターからの戻り値(入力値)を再送
+    res = gen.send(name.upper())
+    # ジェネレーターからの戻り値を表示
+    print(res)
+
+# ------------------------------------------
+
+
 
 
 
