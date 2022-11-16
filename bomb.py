@@ -1,6 +1,5 @@
 import random
 
-
 count = 0
 
 def main():
