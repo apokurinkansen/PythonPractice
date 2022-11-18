@@ -78,24 +78,80 @@
 # ------------------------------------------
 
 # 素数を求めるジェネレータ----------------------
-def gen_com():
-    while True:
-        # 入力ボックスの呼び出し
-        n = yield input("名前を入力してください:")
-        # sendメソッドからの値でメッセージを生成
-        yield f"こんにちわ、{n}さん!"
+# def gen_com():
+#     while True:
+#         # 入力ボックスの呼び出し
+#         n = yield input("名前を入力してください:")
+#         # sendメソッドからの値でメッセージを生成
+#         yield f"こんにちわ、{n}さん!"
     
-gen = gen_com()
+# gen = gen_com()
 
-for name in gen:
-    # ジェネレーターからの戻り値(入力値)を再送
-    res = gen.send(name.upper())
-    # ジェネレーターからの戻り値を表示
-    print(res)
+# for name in gen:
+#     # ジェネレーターからの戻り値(入力値)を再送
+#     res = gen.send(name.upper())
+#     # ジェネレーターからの戻り値を表示
+#     print(res)
 
 # ------------------------------------------
 
 
+# staticメソッド-----------------------------
+# class Area:
+#     @staticmethod
+#     def circle(radius):
+#         return radius * radius *3.14
+
+# if __name__ == "__main__":
+#     print(Area.circle(10))
+
+
+# ------------------------------------------
+
+# ポリモーフィズムの基本-----------------------------
+
+# class Figure:
+#     # width(幅),height(高さ)を準備
+#     def __init__(self,width,height):
+#         self.width = width
+#         self.height = height
+
+#     def get_ara(self):
+#         return 0.0
+
+# class Triangle(Figure):
+#     # 三角形の面積を求めるためのget_areaメソッドを定義
+#     def get_area(self):
+#         return self.width * self.height / 2
+
+# class Rectangle(Figure):
+#     # 四角形の面積を求めるためのget_areaメソッドを定義
+#     def get_area(self):
+#         return self.width * self.height
+
+# if __name__ == "__main__":
+#     t = Triangle(10,15)
+#     r = Rectangle(10,15)
+#     print(t.get_area())
+#     print(r.get_area())
+
+# -------------------------------------------------
+
+
+# アトリビュートの取得/設定-----------------------------
+class MyInfo:
+    # アトリビュート格納のための__data(辞書)を準備
+    def __init__(self):
+        super().__setattr__("__data",{})
+
+    # 指定されたアトリビュートを__dataから取得
+    def __getattr__(self,name):
+        try:
+            return super().__getattribute__("__data")[name]
+        except KeyError as ex:
+            return None
+
+# -------------------------------------------------
 
 
 
